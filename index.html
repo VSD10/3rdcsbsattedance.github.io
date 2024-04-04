@@ -214,16 +214,16 @@
         }
 
         function printAttendance() {
-            const presentCount = studentNames.length - leave.length;
+            const presentCount = studentNames.length-1 - leave.length;
             const absentCount = leave.length;
-            const attendancePercentage = (presentCount / studentNames.length) * 100;
+            const attendancePercentage = (presentCount / (studentNames.length-1)) * 100;
 
             let report = `
 Good Morning Sir, Today's Attendance
 
 Date: ${new Date().toLocaleDateString()}
 Class: III- B.Tech (CSBS)
-Total Strength: ${studentNames.length}
+Total Strength: ${studentNames.length-1}
 No. of Present: ${presentCount}
 No. of Absent: ${absentCount}
 
