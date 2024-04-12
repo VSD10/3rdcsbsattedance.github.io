@@ -4,96 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Attendance Tracker</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-        }
-
-        h1, h2 {
-            color: #333;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        #message {
-            color: green;
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        button {
-            background-color: #d92c2c;
-            color: white;
-            padding: 10px 30px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            display: block;
-            margin: 0 auto;
-            margin-top: 20px;
-        }
-
-        button:hover {
-            background-color: #26f8ed;
-        }
-
-        #attendance-report {
-            background-color: #fff;
-            border: 1px solid #0919ff;
-            border-radius: 5px;
-            padding: 20px;
-            margin-top: 20px;
-            width: 80%;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        #copy-button {
-            background-color: #008CBA;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            display: block;
-            margin: 0 auto;
-            margin-top: 20px;
-        }
-
-        /* CSS for text at the end */
-        .bottom-text {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            text-align: center;
-            background-color: #333;
-            color: #fff;
-            padding: 10px 0;
-        }
-
-        #copy-button:hover {
-            background-color: #005f6b;
-        }
-
-        #whatsapp-button {
-            background-color: #25d366;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            display: block;
-            margin: 0 auto;
-            margin-top: 20px;
-        }
-
-        #whatsapp-button:hover {
-            background-color: #128c7e;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>IIIrd YEAR CSBS ATTENDANCE GENIE</h1>
@@ -102,168 +13,32 @@
 
     <button onclick="recordAttendance('Leave')">Record Leave</button>
     <button onclick="recordAttendance('On-duty')">Record On Duty</button>
-    <button onclick="printAttendance()">Print Attendance</button>
+
+    <!-- Leave input box -->
+    <div id="leave-input" style="display: none;">
+        <input type="text" style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"id="leave-input-field" placeholder="Enter student Roll numbers for leave separated by spaces">
+        <button onclick="recordLeave()">Confirm Leave</button>
+    </div>
+
+    <!-- On Duty input box -->
+    <div id="on-duty-input" style="display: none;">
+        <input type="text" style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;" id="on-duty-input-field" placeholder="Enter student Roll numbers for on duty separated by spaces">
+        <button onclick="recordOnDuty()">Confirm On Duty</button>
+    </div>
 
     <h2>Attendance Report</h2>
     <div id="attendance-report"></div>
 
+    <button id="print-button" onclick="printAttendance()">Print Attendance</button>
     <button id="copy-button" onclick="copyReport()">Copy Report</button>
-    <button id="whatsapp-button" onclick="shareOnWhatsApp()">Share on WhatsApp</button>
 
-    <script>
-        // List of student names
-        const studentNames = [
-           "none", 
-       "ABISHEK S",
-    "AKASH KUMAR",
-    "ARAVIND",
-    "ARUN",
-    "ASFAR UMAR",
-    "BALA SANKAR S",
-    "BARANI B",
-    "BAVISHA S",
-    "BOOBALAKRISHNAN P",
-    "BOOPALAN S",
-    "DARSINI C M",
-    "DEEPIKA A M",
-    "DEEPIKA V",
-    "DEVADHARSHINI S",
-    "DHANUSH K",
-    "DHARSHAN M",
-    "ENIYAVAN R",
-    "GAYATHRI R",
-    "GAYATHRI S",
-    "GOBIKRISHNA P",
-    "GOKUL K",
-    "GOKULAKANNAN S V",
-    "GOWRI SHANKAR K",
-    "HARSAN M",
-    "HEPHZIBAH A",
-    "KABILAN K",
-    "KAMAL RAJ N Y",
-    "KAVYA SRI A",
-    "KRISHNA T",
-    "LIKITHA R",
-    "MADHU SHREE U",
-    "MAHALINGESH J",
-    "MATHEW FERNAND I",
-    "MOHAMMED HABEEB S",
-    "MOHANKUMAR P",
-    "NAVEEN K",
-    "NAVEEN RAJ V",
-    "NOORUL BASHRI U",
-    "PRATHISHA S",
-    "PRIYADHARSHINI B",
-    "RAMANUJAM R T",
-    "RAMYA S",
-    "RISHI A",
-    "RITHIKA K",
-    "SAKTHIVEL S",
-    "SAMUEL JEBARAJ W",
-    "SIVASUPRIYA A",
-    "SOWMIYA S",
-    "SREE ADVAITHA M",
-    "SREEVATHSAN K G",
-    "SRI VENKATESAN P",
-    "SUBHASRILEKHA K",
-    "SUDHARSAN P",
-    "SWARNA LATHA G",
-    "SWETHA C",
-    "THAILAMBALNAYAKI V",
-    "UDHAYAKUMAR M",
-    "VARSHA S",
-    "VARSHINI P",
-    "VARUN K",
-    "VIGNESH R",
-    "YASWANTH V",
-    "DHANRAJ S",
-    "DINESH",
-    "SHESHATHRI",
-    "ILANGO",
-    "MADHAN KUMAR"            // Add more student names here
-        ];
+    <!-- WhatsApp button -->
+    <button id="WhatsApp" onclick="shareOnWhatsApp()">Share on WhatsApp</button>
 
-        let leave = [];
-        let onDuty = [];
-
-        function getChoice(question) {
-            return new Promise((resolve, reject) => {
-                const choice = prompt(question);
-                resolve(parseInt(choice));
-            });
-        }
-
-        async function recordAttendance(type) {
-            const list = [];
-
-            while (true) {
-                const studentName = prompt(`Enter student Roll number  ${type} (or leave blank and enter to stop):`);
-                if (!studentName) {
-                    break;
-                }
-                list.push(studentName);
-            }
-
-            if (type === "Leave") {
-                leave = list;
-            } else {
-                onDuty = list;
-            }
-
-            updateMessage(`${type} recorded: ${list.join(", ")}`);
-        }
-
-        function printAttendance() {
-            const presentCount = studentNames.length-1 - leave.length;
-            const absentCount = leave.length;
-            const attendancePercentage = (presentCount / (studentNames.length-1)) * 100;
-
-            let report = `
-Good Morning Sir, Today's Attendance
-
-Date: ${new Date().toLocaleDateString()}
-Class: III- B.Tech (CSBS)
-Total Strength: ${studentNames.length-1}
-No. of Present: ${presentCount}
-No. of Absent: ${absentCount}
-
-Absentees:
-`;
-            for (let i = 0; i < leave.length; i++) {
-                report += `\t${i + 1}. ${studentNames[leave[i]]}\n`;
-            }report += "\nOn-duty Students:\n";
-            for (let i = 0; i < onDuty.length; i++) {
-                report += `\t${i + 1}. ${studentNames[onDuty[i]]}\n`;
-            }
-
-            report += `
-Percentage: ${attendancePercentage.toFixed(2)}%
-
-Thank you Sir.`;
-
-            document.getElementById("attendance-report").innerText = report;
-        }
-
-        function updateMessage(message) {
-            document.getElementById("message").innerText = message;
-        }
-
-        function copyReport() {
-            const reportText = document.getElementById("attendance-report").innerText;
-            navigator.clipboard.writeText(reportText);
-            alert("Attendance report copied to clipboard!");
-        }
-
-        function shareOnWhatsApp() {
-            const reportText = document.getElementById("attendance-report").innerText;
-            const whatsappURL = `https://wa.me/?text=${encodeURIComponent(reportText)}`;
-            window.open(whatsappURL, "_blank");
-        }
-    </script>
+    <script src="script.js"></script>
     <div style="height: 50vh;"></div>
+    <div class="bottom-text">
+        BY DHARSHAN VS & MALAVICKA V
+    </div>
 </body>
-<div class="bottom-text">
-    BY DHARSHAN VS
-</div>
-
 </html>
