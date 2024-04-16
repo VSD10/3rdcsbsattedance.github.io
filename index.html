@@ -17,18 +17,26 @@
         <div class="button-container">
             <button onclick="recordAttendance('Leave')">Record Leave</button>
             <button onclick="recordAttendance('On-duty')">Record On Duty</button>
+            <button id="help-button" onclick="toggleHelp()">Help</button>
         </div>
 
         <!-- Leave input box -->
         <div id="leave-input" style="display: none;">
-            <input type="text" id="leave-input-field" placeholder="Enter student Roll numbers for leave separated by spaces">
+            <input type="text" id="leave-input-field" placeholder="ENTER NO.BY SPACES">
             <button onclick="recordLeave()">Confirm Leave</button>
         </div>
 
         <!-- On Duty input box -->
         <div id="on-duty-input" style="display: none;">
-            <input type="text" id="on-duty-input-field" placeholder="Enter student Roll numbers for on duty separated by spaces">
+            <input type="text" id="on-duty-input-field" placeholder="ENTER NO.BY SPACES">
             <button onclick="recordOnDuty()">Confirm On Duty</button>
+        </div>
+
+        <!-- Help text -->
+        <div id="help-text" style="display: none;">
+            <p>To record leave or on-duty students, enter the student roll numbers separated by spaces in the input box and click "Confirm Leave" or "Confirm On Duty" and then press "Print Attendance".</p>
+            <p>For example, to record leave for students with roll numbers 1, 3, and 5, enter 1 3 5 in the leave input box and click "Confirm Leave" and then press "Print Attendance".</p>
+            <p>If it show "The input contains invalid indices. Please re-enter the input" , because you entered the same roll number in both absentes and onduty.</p>
         </div>
 
         <section id="attendance-report-container">
@@ -48,49 +56,5 @@
       </footer>
     
     <script src="script.js"></script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Attendance Tracker</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <h1>IIIrd YEAR CSBS ATTENDANCE GENIE</h1>
-
-    <div id="message"></div>
-
-    <button onclick="recordAttendance('Leave')">Record Leave</button>
-    <button onclick="recordAttendance('On-duty')">Record On Duty</button>
-
-    <!-- Leave input box -->
-    <div id="leave-input" style="display: none;">
-        <input type="text" style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"id="leave-input-field" placeholder="Enter student Roll numbers for leave separated by spaces">
-        <button onclick="recordLeave()">Confirm Leave</button>
-    </div>
-
-    <!-- On Duty input box -->
-    <div id="on-duty-input" style="display: none;">
-        <input type="text" style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;" id="on-duty-input-field" placeholder="Enter student Roll numbers for on duty separated by spaces">
-        <button onclick="recordOnDuty()">Confirm On Duty</button>
-    </div>
-
-    <h2>Attendance Report</h2>
-    <div id="attendance-report"></div>
-
-    <button id="print-button" onclick="printAttendance()">Print Attendance</button>
-    <button id="copy-button" onclick="copyReport()">Copy Report</button>
-
-    <!-- WhatsApp button -->
-    <button id="WhatsApp" onclick="shareOnWhatsApp()">Share on WhatsApp</button>
-
-    <script src="script.js"></script>
- <footer>
-        <p>&copy; DHARSHAN VS & MALAVICKA V</p>
-      </footer>
-    
 </body>
 </html>
