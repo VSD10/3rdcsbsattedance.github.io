@@ -136,22 +136,31 @@ Total Strength: ${studentNames.length}
 No. of Present: ${presentCount}
 No. of Absent: ${absentCount}
 
-Absentees:
-`;
+`
+if(leave.length>=1)
+{
+report+="\nAbsentees\n";
+
     for (let i = 0; i < leave.length; i++) {
         const index = leave[i];
         report += `\t${i + 1}. ${studentNames[index]}\n`;
     }
+}
+    if(onDuty.length>=1)
+    {
     report += "\nOn-duty Students:\n";
     for (let i = 0; i < onDuty.length; i++) {
         const index = onDuty[i];
         report += `\t${i + 1}. ${studentNames[index]}\n`;
-    }
+    }}
+    if(Late.length>=1)
+    {
     report += "\nLate Comers:\n";
     for (let i = 0; i < Late.length; i++) {
         const index = Late[i];
         report += `\t${i + 1}. ${studentNames[index]}\n`;
     }
+}
     report += `
 Percentage: ${attendancePercentage.toFixed(2)}%
 

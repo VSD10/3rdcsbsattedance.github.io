@@ -71,7 +71,7 @@ input[type="text"]:focus {
 .action-buttons {
   text-align: center;
   margin-top: 20px;
-  margin-bottom: 400px;
+  margin-bottom: 20px;
   animation: slideInUp 1s ease-in-out;
 }
 
