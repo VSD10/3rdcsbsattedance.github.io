@@ -3,8 +3,8 @@ body {
   margin: 0;
   padding: 0;
   text-align: center;
-  background-image: radial-gradient(circle 513px at 52.1% 52.6%, rgb(181, 184, 38) 0%, rgba(19, 35, 119, 0.612) 90%);
-  animation: fadeIn 1s ease-in-out;
+ background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
+    animation: fadeIn 1s ease-in-out;
 }
 
 header, footer {
