@@ -141,7 +141,7 @@ input[type="text"]:focus {
   height: calc(100% + 4px);
   animation: glowing-button-85 20s linear infinite;
   transition: opacity 0.3s ease-in-out;
-  border-radius: 10px;
+  border-radius: 0px;
 }
 
 @keyframes glowing-print-button {
