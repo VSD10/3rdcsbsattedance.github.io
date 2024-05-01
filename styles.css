@@ -67,7 +67,16 @@ input[type="text"]:focus {
   background-color: rgba(255, 255, 255, 0.3); /* Opaque white background with 70% opacity */
   animation: slideInUp 1s ease-in-out;
 }
-
+#vs{
+  background-color: #d9602c;
+  color: rgb(249, 249, 249);
+  padding: 10px 30px;
+  border:double;
+  border-radius: 40px;
+  cursor: pointer;
+  margin: 10px;
+  transition: all 0.3s ease-in-out;
+}
 .action-buttons {
   text-align: center;
   margin-top: 20px;
@@ -236,6 +245,29 @@ input[type="text"]:focus {
   background-color: rgba(255, 255, 255, 0.3);
   animation: slideInUp 1s ease-in-out;
 }
+/* Reset default link styles */
+a {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Inherit text color */
+}
+
+/* Style for the link */
+#BACK {
+  background-color: #d9602c;
+  color: rgb(249, 249, 249);
+  padding: 10px 30px;
+  border:double;
+  border-radius: 40px;
+  cursor: pointer;
+  margin: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover effect */
+#BACK:hover {
+  background-image: linear-gradient(to bottom, #000000, #0d161f); /* Reverse gradient on hover */
+}
+
 
 #help-text p {
   margin-bottom: 10px;
