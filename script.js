@@ -61,11 +61,11 @@ const studentNames = {
     60: "VARUN K",
     61: "VIGNESH R",
     62: "YASWANTH V",
-    63: "DHANRAJ S",
-    64: "DINESH",
-    65: "SHESHATHRI",
-    66: "ILANGO",
-    67: "MADHAN KUMAR"
+    301: "DHANRAJ S",
+    302: "DINESH V S",
+    305: "SHESHATHRI S",
+    303: "ILANGO D",
+    304: "MADHAN KUMAR R"
     // Add the rest of the student names here
 };
 
