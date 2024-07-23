@@ -131,7 +131,7 @@ function printAttendance() {
 ${greeting} Sir, Today's Attendance
 
 Date: ${now.toLocaleDateString()}
-Class: III- B.Tech (CSBS)
+Class: IV- B.Tech (CSBS)
 Total Strength: ${len}
 No. of Present: ${presentCount}
 No. of Absent: ${absentCount}
